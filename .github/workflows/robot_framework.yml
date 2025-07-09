@@ -1,0 +1,40 @@
+name: Robot Tests with Allure Reports
+on:
+  push:
+    branches: [ main, master ]
+  pull_request:
+    branches: [ main, master ]
+jobs:
+
+  test:
+    timeout-minutes: 60
+    runs-on: ubuntu-latest
+    steps:
+    
+    - uses: actions/checkout@v4
+    - name: Set up Python
+      uses: actions/setup-python@v4
+      with:
+        python-version: '3.13.3'
+
+    - name: Setup Node.js
+      uses: actions/setup-node@v3
+      with:
+        node-version: '22'  # specify desired Node.js version        
+        
+    - name: Install dependencies
+      run: |
+        python -m pip install --upgrade pip
+        pip install -r requirements.txt
+        rfbrowser init
+        
+    - name: Run your tests
+      run: robot  --outputdir results
+      
+    - name: Upload Allure Report as an artifact
+      uses: actions/upload-artifact@v4
+      if: always()
+      with:
+        name: results-report
+        path: results/
+        

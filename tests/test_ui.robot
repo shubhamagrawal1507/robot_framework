@@ -7,7 +7,7 @@ Library    DateTime
 *** Variables ***
 ${BASE_URL}    https://testautomationpractice.blogspot.com/
 ${BROWSER}   chromium
-${HEADLESS}    false
+${HEADLESS}    true
 @{expected_list}    Red    Blue    Green    Yellow    Red    White    Green
 
 *** Test Cases ***

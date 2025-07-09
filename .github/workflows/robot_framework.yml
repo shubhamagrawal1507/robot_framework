@@ -1,9 +1,6 @@
 name: Robot Tests with Allure Reports
 on:
-  push:
-    branches: [ main, master ]
-  pull_request:
-    branches: [ main, master ]
+  workflow_dispatch:
 jobs:
 
   test:
@@ -29,12 +26,18 @@ jobs:
         rfbrowser init
         
     - name: Run your tests
-      run: robot  --outputdir results ./tests/test_ui.robot
+      run: robot  --outputdir results ./tests/test_ui.robot  --listener allure_robotframework --prerunmodifier allure_robotframework.testplan
       
+    - name: Upload Robot Report as an artifact
+      uses: actions/upload-artifact@v4
+      if: always()
+      with:
+        name: robot-report
+        path: results/
+
     - name: Upload Allure Report as an artifact
       uses: actions/upload-artifact@v4
       if: always()
       with:
-        name: results-report
-        path: results/
-        
+        name: allure-report
+        path: output/        

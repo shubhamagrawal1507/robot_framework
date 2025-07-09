@@ -1,4 +1,4 @@
-name: Robot Tests with Allure Reports
+name: Robot Tests
 on:
   workflow_dispatch:
 jobs:

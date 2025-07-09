@@ -26,7 +26,7 @@ jobs:
         rfbrowser init
         
     - name: Run your tests
-      run: robot  --outputdir results ./tests/test_ui_simplified.robot  --listener allure_robotframework --prerunmodifier allure_robotframework.testplan
+      run: robot  --outputdir results ./tests/test_ui_simplified.robot
       
     - name: Upload Robot Report as an artifact
       uses: actions/upload-artifact@v4
@@ -34,10 +34,3 @@ jobs:
       with:
         name: robot-report
         path: results/
-
-    - name: Upload Allure Report as an artifact
-      uses: actions/upload-artifact@v4
-      if: always()
-      with:
-        name: allure-report
-        path: output/        

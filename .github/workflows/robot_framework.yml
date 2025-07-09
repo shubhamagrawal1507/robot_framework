@@ -29,7 +29,7 @@ jobs:
         rfbrowser init
         
     - name: Run your tests
-      run: robot  --outputdir results
+      run: robot  --outputdir results ./tests/test_ui.robot
       
     - name: Upload Allure Report as an artifact
       uses: actions/upload-artifact@v4

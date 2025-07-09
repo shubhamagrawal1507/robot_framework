@@ -1,4 +1,4 @@
 allure-robotframework
 robotframework
 robotframework-browser
-robotframework-request
+robotframework-requests
